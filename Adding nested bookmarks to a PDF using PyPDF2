@@ -1,0 +1,9 @@
+from PyPDF2 import PdfFileWriter, PdfFileReader
+output = PdfFileWriter()
+input1 = PdfFileReader(open('introduction.pdf', 'rb'))
+output.addPage(input1.getPage(0))
+input2 = PdfFileReader(open('hello.pdf', 'rb'))
+output.addPage(input2.getPage(0))
+
+parent = output.addBookmark('Introduction', 0) # add parent bookmark
+output.addBookmark('Hello, World', 0, parent) # add child bookmark
